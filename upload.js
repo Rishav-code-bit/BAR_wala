@@ -3,6 +3,10 @@ const audioFile = document.querySelector('#audio-file');
 const audioPreview = document.querySelector('#audio-preview');
 const uploadForm = document.querySelector('#upload-form');
 const uploadResult = document.querySelector('#upload-result');
+const uploadButton = document.querySelector('.upload-submit');
+const lyricsField = document.querySelector('#lyrics');
+const SUPABASE_URL = 'https://zptawselvorzmatszeyi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_7Av0eqaAcDelCQ1cMoaQYw_W0VMcyHR';
 let audioUrl;
 
 const updateClock = () => {
@@ -22,10 +26,10 @@ audioFile.addEventListener('change', () => {
   uploadResult.textContent = `Ready: ${file.name}`;
 });
 
-uploadForm.addEventListener('submit', (event) => {
+uploadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const file = audioFile.files[0];
-  const lyrics = document.querySelector('#lyrics').value.trim();
+  const lyrics = lyricsField.value.trim();
 
   if (!file || !file.name.toLowerCase().endsWith('.mp3')) {
     uploadResult.textContent = 'Please choose an MP3 audio file.';
@@ -37,5 +41,41 @@ uploadForm.addEventListener('submit', (event) => {
     return;
   }
 
-  uploadResult.textContent = `Preview ready for ${file.name}. The audio and lyrics are available in this browser session.`;
+  if (!window.supabase || SUPABASE_URL.startsWith('PASTE_') || SUPABASE_ANON_KEY.startsWith('PASTE_')) {
+    uploadResult.textContent = 'Supabase is not configured for uploads yet.';
+    return;
+  }
+
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '-');
+  const filePath = `${Date.now()}-${safeName}`;
+  const lyricsPath = `${filePath}.txt`;
+  const storage = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY).storage.from('songs');
+
+  uploadButton.disabled = true;
+  uploadButton.textContent = 'UPLOADING...';
+  uploadResult.textContent = '';
+
+  const audioUpload = await storage.upload(filePath, file, { contentType: 'audio/mpeg', upsert: false });
+  if (audioUpload.error) {
+    uploadResult.textContent = `Upload failed: ${audioUpload.error.message}`;
+    uploadButton.disabled = false;
+    uploadButton.innerHTML = 'UPLOAD <span>↗</span>';
+    return;
+  }
+
+  const lyricsUpload = await storage.upload(lyricsPath, new Blob([lyrics], { type: 'text/plain' }), { contentType: 'text/plain', upsert: false });
+  if (lyricsUpload.error) {
+    await storage.remove([filePath]);
+    uploadResult.textContent = `Lyrics upload failed: ${lyricsUpload.error.message}`;
+    uploadButton.disabled = false;
+    uploadButton.innerHTML = 'UPLOAD <span>↗</span>';
+    return;
+  }
+
+  uploadResult.textContent = `Uploaded successfully: ${filePath}`;
+  uploadForm.reset();
+  audioPreview.removeAttribute('src');
+  audioPreview.classList.remove('visible');
+  uploadButton.disabled = false;
+  uploadButton.innerHTML = 'UPLOAD <span>↗</span>';
 });

@@ -45,12 +45,13 @@
         </div>
 
         <label class="upload-check"><input type="checkbox" checked> <span>Keep this upload attached to the lyrics</span></label>
-        <button class="upload-submit" type="submit">PREVIEW UPLOAD <span>↗</span></button>
-        <p class="upload-note">This static version previews the upload in your browser. A storage backend is needed to make files available to everyone.</p>
+        <button class="upload-submit" type="submit">UPLOAD<span>↗</span></button>
+        <p class="upload-note">Songs are saved to the shared Supabase <strong>songs</strong> bucket with their lyrics.</p>
         <p class="upload-result" id="upload-result" role="status" aria-live="polite"></p>
       </form>
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="upload.js"></script>
 </body>
 </html>
