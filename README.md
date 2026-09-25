@@ -57,14 +57,10 @@ npm run dev
 Check out the live website hosted on Netlify:
 👉 barwala.netlify.app
 
-![Bar Wala Main Interface](https://github.com/user-attachments/assets/image_2a1fa0.jpg)[cite: 1]
-*Main rooftop interface with live player, online count, and music platform links[cite: 1].*
-
+![image](https://github.com/user-attachments/assets/image_2a1fa0.jpg)
 <br/>
 
-![Bar Wala Upload Modal](https://github.com/user-attachments/assets/image_2a717f.jpg)[cite: 2]
-*Community upload dialog for adding MP3s and lyrics to the shared Supabase bucket[cite: 2].*
-
+![image](https://github.com/user-attachments/assets/image_2a717f.jpg)
 
 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
