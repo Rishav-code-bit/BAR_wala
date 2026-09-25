@@ -21,7 +21,7 @@
         <span class="brand-mark">BW</span>
         <span>BAR WALA</span>
       </a>
-      <div class="room-status"><span class="status-dot"></span><strong>31</strong><span>online</span></div>
+      <div class="room-status" aria-label="People currently online"><span class="status-dot"></span><strong id="online-count">--</strong><span>online</span></div>
       <div class="top-actions">
         <a class="service-link" href="https://open.spotify.com/playlist/3iYHVXAyUepzzNPKaGn3p1" target="_blank" rel="noopener"><span class="service-icon">●</span> Spotify <span>↗</span></a>
         <a class="service-link" href="https://www.youtube.com/playlist?list=PL0umg_TNpoZTTdZVIi5tfX69pRmoMFGna" target="_blank" rel="noopener"><span class="service-icon youtube-mark">▶</span> YT Music <span>↗</span></a>
@@ -100,6 +100,7 @@ cheersButton.addEventListener('click', () => {
     <div class="toast" id="toast" role="status" aria-live="polite"><span>✦</span> Cheers! The night just got better.</div>
   </main>
   <audio id="songAudio" preload="metadata"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js?v=6"></script>
 </body>
 </html>

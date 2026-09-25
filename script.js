@@ -1,6 +1,34 @@
 const toast = document.querySelector('#toast');
 let toastTimer;
 
+const SUPABASE_URL = 'PASTE_YOUR_SUPABASE_PROJECT_URL_HERE';
+const SUPABASE_ANON_KEY = 'PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE';
+const onlineCount = document.querySelector('#online-count');
+
+const updateOnlineCount = (presenceState) => {
+  const count = Object.values(presenceState)
+    .reduce((total, presences) => total + presences.length, 0);
+  onlineCount.textContent = count;
+};
+
+const startPresence = async () => {
+  if (!window.supabase || SUPABASE_URL.startsWith('PASTE_') || SUPABASE_ANON_KEY.startsWith('PASTE_')) return;
+
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const channel = client.channel('bar-wala-online', { config: { presence: { key: crypto.randomUUID() } } });
+
+  channel
+    .on('presence', { event: 'sync' }, () => updateOnlineCount(channel.presenceState()))
+    .on('presence', { event: 'join' }, () => updateOnlineCount(channel.presenceState()))
+    .on('presence', { event: 'leave' }, () => updateOnlineCount(channel.presenceState()));
+
+  channel.subscribe(async (status) => {
+    if (status === 'SUBSCRIBED') await channel.track({ onlineAt: new Date().toISOString() });
+  });
+};
+
+startPresence();
+
 const tracks = [
   { title: 'Aadat (Juda Hoke Bhi)', artist: 'Atif Aslam · Kalyug', file: 'Aadat (Juda Hoke Bhi) Atif Aslam Kunal Khemu Kalyug Sayeed Q Emraan Hashmi.mp3' },
   { title: 'Aaj Phir', artist: 'Arijit Singh · Hate Story 2', file: 'Aaj Phir Full Video Song Hate Story 2 Arijit Singh Jay Bhanushali Surveen Chawla.mp3' },
