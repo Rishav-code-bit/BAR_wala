@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d0e">
+  <title>Bar Wala | Upload</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="stage upload-stage">
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="clock" id="clock">12:12 pm</div>
+      <a class="brand" href="./" aria-label="Bar Wala home">
+        <span class="brand-mark">BW</span>
+        <span>BAR WALA</span>
+      </a>
+      <a class="text-button upload-link" href="./">BACK HOME <span>↗</span></a>
+    </header>
+
+    <section class="upload-main" aria-labelledby="upload-title">
+      <div class="upload-heading">
+        <h1 id="upload-title">Hello, again!</h1>
+        <p>Bring a song into the room. Add the MP3 and lyrics below to preview your upload.</p>
+      </div>
+
+      <form class="upload-form" id="upload-form">
+        <div class="upload-bars">
+          <div class="upload-field">
+            <label for="audio-file">UPLOAD SONG</label>
+            <input id="audio-file" name="audio" type="file" accept="audio/mpeg,.mp3" required>
+            <audio id="audio-preview" class="upload-preview" controls></audio>
+          </div>
+
+          <div class="upload-field">
+            <label for="lyrics">ADD LYRICS</label>
+            <textarea id="lyrics" name="lyrics" placeholder="Paste the lyrics here..." required></textarea>
+          </div>
+        </div>
+
+        <label class="upload-check"><input type="checkbox" checked> <span>Keep this upload attached to the lyrics</span></label>
+        <button class="upload-submit" type="submit">PREVIEW UPLOAD <span>↗</span></button>
+        <p class="upload-note">This static version previews the upload in your browser. A storage backend is needed to make files available to everyone.</p>
+        <p class="upload-result" id="upload-result" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script src="upload.js"></script>
+</body>
+</html>

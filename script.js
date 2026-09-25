@@ -96,10 +96,6 @@ const showToast = (message) => {
 
 document.querySelector('[data-action="cheers"]').addEventListener('click', () => showToast('Cheers! Offline music is ready.'));
 
-document.querySelector('[data-action="focus-player"]').addEventListener('click', () => {
-  document.querySelector('#player').scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
-
 miniPlay.addEventListener('click', () => {
   if (songAudio.paused) songAudio.play().catch(() => showToast('Press play again to start the song.'));
   else songAudio.pause();
