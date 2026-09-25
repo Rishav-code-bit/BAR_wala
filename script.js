@@ -1,8 +1,8 @@
 const toast = document.querySelector('#toast');
 let toastTimer;
 
-const SUPABASE_URL = 'https://zptawselvorzmatszeyi.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_7Av0eqaAcDelCQ1cMoaQYw_W0VMcyHR';
+const SUPABASE_URL = '**************';
+const SUPABASE_ANON_KEY = '*****************';
 const supabaseClient = window.supabase && !SUPABASE_URL.startsWith('PASTE_') && !SUPABASE_ANON_KEY.startsWith('PASTE_')
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
   : null;
