@@ -44,10 +44,27 @@ const progressFill = document.querySelector('#progress-fill');
 const currentTime = document.querySelector('#current-time');
 const duration = document.querySelector('#duration');
 let currentTrack = 0;
+let lyricsRequestId = 0;
 
 const formatTime = (seconds) => {
   if (!Number.isFinite(seconds)) return '0:00';
   return `${Math.floor(seconds / 60)}:${Math.floor(seconds % 60).toString().padStart(2, '0')}`;
+};
+
+const loadLyrics = async (track) => {
+  const requestId = ++lyricsRequestId;
+  const lyricsContent = document.querySelector('#lyrics-content');
+  lyricsContent.textContent = 'Loading lyrics...';
+
+  const lyricsFile = track.file.replace(/\.mp3$/i, '.txt');
+  try {
+    const response = await fetch(`lyrics/${encodeURIComponent(lyricsFile)}`);
+    if (!response.ok) throw new Error('Lyrics file not found');
+    const lyrics = await response.text();
+    if (requestId === lyricsRequestId) lyricsContent.textContent = lyrics.trim() || 'No lyrics added for this track yet.';
+  } catch {
+    if (requestId === lyricsRequestId) lyricsContent.textContent = 'No lyrics added for this track yet.';
+  }
 };
 
 const updateTrackText = () => {
@@ -56,6 +73,7 @@ const updateTrackText = () => {
   document.querySelector('#track-artist').textContent = track.artist;
   document.querySelector('#lyrics-title').textContent = track.title;
   document.querySelector('#lyrics-artist').textContent = track.artist;
+  loadLyrics(track);
 };
 
 const loadTrack = (index, play = false) => {
