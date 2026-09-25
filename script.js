@@ -34,8 +34,8 @@ const tracks = [
   { title: 'Aaj Phir', artist: 'Arijit Singh · Hate Story 2', file: 'Aaj Phir.mp3' },
   { title: 'Chhod Diya', artist: 'Arijit Singh, Kanika Kapoor · Baazaar', file: 'Chhod Diya.mp3' },
   { title: 'Dil Ibaadat Kar Raha Hai', artist: 'KK · Tum Mile', file: 'Dil Ibaadat.mp3' },
-  { title: 'Labon Ko', artist: 'K.K. · Bhool Bhulaiyaa', file: 'Lyrical Labon Ko Bhool Bhulaiyaa Pritam K.K. Akshay Kumar, Shiney Ahuja, Vidya Balan.mp3' },
-  { title: 'Tera Mera Rishta Continues', artist: 'Emraan Hashmi · Awarapan 2', file: 'Tera Mera Rishta Continues (Film Ballad) Awarapan 2 Emraan, Disha Mithoon, Saaj, Sayeed, Mustafa.mp3' }
+  { title: 'Labon Ko', artist: 'K.K. · Bhool Bhulaiyaa', file: 'Labon Ko.mp3' },
+  { title: 'Tera Mera Rishta Continues', artist: 'Emraan Hashmi · Awarapan 2', file: 'Tera Mera.mp3' }
 ];
 const songAudio = document.querySelector('#songAudio');
 const miniPlayer = document.querySelector('.mini-player');
