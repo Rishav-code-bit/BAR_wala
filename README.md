@@ -55,7 +55,7 @@ npm run dev
 
 🌐 Live Demo
 Check out the live website hosted on Netlify:
-👉 barwala.netlify.app
+👉 [barwala](https://barwala.netlify.app/)
 
 ![image](https://github.com/user-attachments/assets/image_2a1fa0.jpg)
 <br/>
