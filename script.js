@@ -30,7 +30,7 @@ const startPresence = async () => {
 startPresence();
 
 const tracks = [
-  { title: 'Aadat (Juda Hoke Bhi)', artist: 'Atif Aslam · Kalyug', file: 'Aadat (Juda Hoke Bhi) Atif Aslam Kunal Khemu Kalyug Sayeed Q Emraan Hashmi.mp3' },
+  { title: 'Aadat (Juda Hoke Bhi)', artist: 'Atif Aslam · Kalyug', file: 'aadat.mp3' },
   { title: 'Aaj Phir', artist: 'Arijit Singh · Hate Story 2', file: 'Aaj Phir Full Video Song Hate Story 2 Arijit Singh Jay Bhanushali Surveen Chawla.mp3' },
   { title: 'Chhod Diya', artist: 'Arijit Singh, Kanika Kapoor · Baazaar', file: 'Chhod Diya (Lyrics) - Arijit Singh, Kanika Kapoor Baazaar.mp3' },
   { title: 'Dil Ibaadat Kar Raha Hai', artist: 'KK · Tum Mile', file: 'KK Dil Ibaadat Kar Raha Hai (Lyrical Video) Emraan Hashmi Soha Ali Khan Pritam Tum Mile.mp3' },
@@ -122,6 +122,22 @@ document.querySelector('[data-action="previous"]').addEventListener('click', () 
 document.querySelector('[data-action="next"]').addEventListener('click', () => loadTrack(currentTrack + 1, true));
 
 const lyricsButton = document.querySelector('[data-action="lyrics"]');
+// async function loadLyrics(songName) {
+//     const lyricsElement = document.getElementById("lyrics-content");
+
+//     try {
+//         const response = await fetch(`lyrics/${songName}.txt`);
+
+//         if (!response.ok) {
+//             throw new Error();
+//         }
+
+//         lyricsElement.textContent = await response.text();
+
+//     } catch {
+//         lyricsElement.textContent = "No lyrics added for this track yet.";
+//     }
+// }
 const lyricsPanel = document.querySelector('#lyrics-panel');
 const closeLyrics = () => {
   lyricsPanel.classList.remove('open');
