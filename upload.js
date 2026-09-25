@@ -48,7 +48,7 @@ uploadForm.addEventListener('submit', async (event) => {
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '-');
   const filePath = `${Date.now()}-${safeName}`;
-  const lyricsPath = `${filePath}.txt`;
+  const lyricsPath = filePath.replace(/\.mp3$/i, '.txt');
   const storage = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY).storage.from('songs');
 
   uploadButton.disabled = true;
