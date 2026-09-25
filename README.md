@@ -57,9 +57,9 @@ npm run dev
 Check out the live website hosted on Netlify:
 👉 barwala.netlify.app
 
-<img width="1919" height="953" alt="image" src="https://github.com/user-attachments/assets/25863c4d-13ae-422a-9fd2-c845460e03a0" />
+<img src="https://github.com/user-attachments/assets/25863c4d-13ae-422a-9fd2-c845460e03a0" >
 
-<img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/20e8aa74-17e4-4fd8-bd61-6256e9107b8d" />
+<img src="https://github.com/user-attachments/assets/20e8aa74-17e4-4fd8-bd61-6256e9107b8d">
 
 
 🤝 Contributing
