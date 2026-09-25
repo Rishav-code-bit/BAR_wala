@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d0e">
+  <title>Bar Wala | After Dark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="stage">
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="clock" id="clock">12:12 pm</div>
+      <a class="brand" href="./" aria-label="Bar Wala home">
+        <span class="brand-mark">BW</span>
+        <span>BAR WALA</span>
+      </a>
+      <div class="room-status"><span class="status-dot"></span><strong>31</strong><span>online</span></div>
+      <div class="top-actions">
+        <a class="service-link" href="https://open.spotify.com/playlist/3iYHVXAyUepzzNPKaGn3p1" target="_blank" rel="noopener"><span class="service-icon">●</span> Spotify <span>↗</span></a>
+        <a class="service-link" href="https://www.youtube.com/playlist?list=PL0umg_TNpoZTTdZVIi5tfX69pRmoMFGna" target="_blank" rel="noopener"><span class="service-icon youtube-mark">▶</span> YT Music <span>↗</span></a>
+        <button class="text-button" type="button" data-action="focus-player">NOW PLAYING <span>↗</span></button>
+      </div>
+    </header>
+
+    <aside class="left-rail">
+      <button class="rail-button active" type="button"
+        data-action="cheers"
+        aria-label="Cheers"
+        title="Raise a cheers">
+    Cheers
+</button>
+
+<audio id="cheersSound" src="cheers/cheers.mp3" preload="auto"></audio>
+
+<script>
+const cheersButton = document.querySelector('[data-action="cheers"]');
+const cheersSound = document.getElementById('cheersSound');
+
+cheersButton.addEventListener('click', () => {
+    cheersSound.currentTime = 0;
+    cheersSound.play();
+});
+</script>
+        <span class="rail-icon">✦</span>
+        <span>CHEERS</span>
+      </button>
+      <div class="rail-line"></div>
+      <span class="rail-caption">GOOD<br>VIBES<br>ONLY</span>
+    </aside>
+
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow"><span></span> LIVE FROM THE ROOFTOP</p>
+      <h1 id="page-title"><span>बार</span><br><em>वाला</em></h1>
+      <p class="intro">Good drinks. Loud stories. One more song.</p>
+      <div class="hero-meta"><span>BAR WALA FM</span><span class="meta-rule"></span><span>24 / 7</span></div>
+    </section>
+
+    <section class="player-shell mini-player" id="player" aria-label="Now playing">
+      <div class="mini-art" aria-hidden="true"></div>
+      <div class="mini-track">
+        <span class="track-kicker">NOW PLAYING</span>
+        <h2 id="track-title">Aadat (Juda Hoke Bhi)</h2>
+        <p id="track-artist">Atif Aslam · Kalyug</p>
+        <div class="mini-progress"><span id="progress-fill"></span></div>
+        <div class="mini-time"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+      </div>
+      <div class="mini-controls">
+        <button type="button" class="mini-control" data-action="previous" aria-label="Previous song">|◀</button>
+        <button type="button" class="mini-play" data-action="mini-play" aria-label="Play" title="Play"><span>▶</span></button>
+        <button type="button" class="mini-control" data-action="next" aria-label="Next song">▶|</button>
+        <span class="mini-source" aria-label="Offline music">♫</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>OPEN TILL THE LAST SONG</span>
+      <span class="footer-center">MUSIC FOR THE MOMENT <i></i></span>
+      <span>© 2024 BW</span>
+    </footer>
+
+    <button class="lyrics-button" type="button" data-action="lyrics" aria-expanded="false" aria-controls="lyrics-panel">
+      <span class="lyrics-icon">≡</span>
+      <span>LYRICS</span>
+    </button>
+    <aside class="lyrics-panel" id="lyrics-panel" aria-label="Song lyrics" aria-hidden="true">
+      <button class="lyrics-close" type="button" data-action="close-lyrics" aria-label="Close lyrics">×</button>
+      <span class="track-kicker">NOW PLAYING</span>
+      <h2 id="lyrics-title">Playlist Track</h2>
+      <p class="lyrics-artist" id="lyrics-artist">Bar Wala Sounds · 01</p>
+      <div class="lyrics-empty"><span>♬</span><p id="lyrics-content">No lyrics added for this track yet.</p></div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><span>✦</span> Cheers! The night just got better.</div>
+  </main>
+  <audio id="songAudio" preload="metadata"></audio>
+  <script src="script.js?v=6"></script>
+</body>
+</html>
